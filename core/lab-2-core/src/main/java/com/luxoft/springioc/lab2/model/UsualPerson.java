@@ -3,12 +3,10 @@ package com.luxoft.springioc.lab2.model;
 import java.util.List;
 
 public class UsualPerson implements Person {
+
     private int id;
-
     private String name;
-
     private Country country;
-
     private int age;
     private float height;
     private boolean isProgrammer;
