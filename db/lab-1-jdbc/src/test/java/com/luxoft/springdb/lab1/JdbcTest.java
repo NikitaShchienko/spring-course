@@ -23,14 +23,13 @@ public class JdbcTest{
 	@Autowired
 	private CountryDao countryDao;
 	
-    private List<Country> expectedCountryList = new ArrayList<Country>();
-    private List<com.luxoft.springdb.lab1.model.Country> expectedCountryListStartsWithA = new ArrayList<Country>();
+    private List<Country> expectedCountryList = new ArrayList<>();
+    private List<Country> expectedCountryListStartsWithA = new ArrayList<>();
     private Country countryWithChangedName = new Country(1, "Russia", "RU");
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         initExpectedCountryLists();
-        countryDao.loadCountries();
     }
 
     
