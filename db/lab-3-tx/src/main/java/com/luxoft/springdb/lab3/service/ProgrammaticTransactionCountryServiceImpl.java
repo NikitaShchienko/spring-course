@@ -1,5 +1,7 @@
 package com.luxoft.springdb.lab3.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.support.TransactionTemplate;
 
 import com.luxoft.springdb.lab3.dao.CountryDao;
@@ -14,57 +16,50 @@ import org.springframework.transaction.annotation.Propagation;
 
 import java.util.List;
 
+@Repository
 public class ProgrammaticTransactionCountryServiceImpl implements ProgrammaticTransactionCountryService {
     private TransactionTemplate transactionTemplate;
-    private CountryDao dao;
+    private CountryDao countryDao;
 
-    public ProgrammaticTransactionCountryServiceImpl(PlatformTransactionManager transactionManager) {
+    @Autowired
+    public ProgrammaticTransactionCountryServiceImpl(PlatformTransactionManager transactionManager, CountryDao countryDao) {
         this.transactionTemplate = new TransactionTemplate(transactionManager);
+        this.countryDao = countryDao;
     }
 
     public Country getCountryByName(final String name) {
         transactionTemplate.setIsolationLevel(Isolation.REPEATABLE_READ.value());
-        return (Country) transactionTemplate.execute(new TransactionCallback<Object>() {
-            public Object doInTransaction(TransactionStatus status) {
-                try {
-                    return dao.getCountryByName(name);
-                } catch (CountryNotFoundException e) {
-
-
-                }
+        return (Country) transactionTemplate.execute((TransactionCallback<Object>) status -> {
+            try {
+                return countryDao.getCountryByName(name);
+            } catch (CountryNotFoundException e) {
                 return null;
             }
         });
     }
 
     public Country getCountryByCodeName(final String codeName, final Propagation propagation) {
-        return (Country) transactionTemplate.execute(new TransactionCallback<Object>() {
-            public Object doInTransaction(TransactionStatus status) {
-                return getCountryByCodeNameInTransaction(codeName, propagation);
-            }
-        });
+        return (Country) transactionTemplate.execute((TransactionCallback<Object>) status -> getCountryByCodeNameInTransaction(codeName, propagation));
     }
 
     private Country getCountryByCodeNameInTransaction(final String codeName, final Propagation propagation) {
 
-        return (Country) transactionTemplate.execute(new TransactionCallback<Object>() {
-            public Object doInTransaction(TransactionStatus status) {
-                TransactionLog.append("Method inside transaction, propagation = " + propagation.toString() + "\n");
-                return dao.getCountryByCodeName(codeName);
-            }
+        return (Country) transactionTemplate.execute((TransactionCallback<Object>) status -> {
+            TransactionLog.append("Method inside transaction, propagation = " + propagation.toString() + "\n");
+            return countryDao.getCountryByCodeName(codeName);
         });
     }
 
 
     public List<Country> getAllCountries() {
-        return dao.getCountryList();
+        return countryDao.getCountryList();
     }
 
-    public CountryDao getDao() {
-        return dao;
+    public CountryDao getCountryDao() {
+        return countryDao;
     }
 
-    public void setDao(CountryDao dao) {
-        this.dao = dao;
+    public void setCountryDao(CountryDao countryDao) {
+        this.countryDao = countryDao;
     }
 }
