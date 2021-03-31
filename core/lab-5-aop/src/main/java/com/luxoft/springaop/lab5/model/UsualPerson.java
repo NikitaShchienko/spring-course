@@ -1,5 +1,7 @@
 package com.luxoft.springaop.lab5.model;
 
+import com.luxoft.springaop.lab5.aspects.Valid;
+
 import java.util.List;
 
 public class UsualPerson implements Person {
@@ -16,113 +18,114 @@ public class UsualPerson implements Person {
     private List<String> contacts;
 
     /* (non-Javadoc)
-	 * @see lab.model.Person1#setIsProgrammer(boolean)
-	 */
+     * @see lab.model.Person1#setIsProgrammer(boolean)
+     */
     @Override
-	public void setIsProgrammer(boolean isProgrammer) {
+    public void setIsProgrammer(boolean isProgrammer) {
         this.isProgrammer = isProgrammer;
     }
 
     /* (non-Javadoc)
-	 * @see lab.model.Person1#setAge(int)
-	 */
+     * @see lab.model.Person1#setAge(int)
+     */
+    @Valid
     @Override
-	public void setAge(int age) {
+    public void setAge(int age) {
         this.age = age;
     }
 
     /* (non-Javadoc)
-	 * @see lab.model.Person1#setHeight(float)
-	 */
+     * @see lab.model.Person1#setHeight(float)
+     */
     @Override
-	public void setHeight(float height) {
+    public void setHeight(float height) {
         this.height = height;
     }
 
     /* (non-Javadoc)
-	 * @see lab.model.Person1#setName(java.lang.String)
-	 */
+     * @see lab.model.Person1#setName(java.lang.String)
+     */
     @Override
-	public void setName(String name) {
+    public void setName(String name) {
         this.name = name;
     }
 
     /* (non-Javadoc)
-	 * @see lab.model.Person1#getName()
-	 */
+     * @see lab.model.Person1#getName()
+     */
     @Override
-	public String getName() {
+    public String getName() {
         return name;
     }
 
     /* (non-Javadoc)
-	 * @see lab.model.Person1#sayHello(lab.model.Person)
-	 */
+     * @see lab.model.Person1#sayHello(lab.model.Person)
+     */
     @Override
-	public void sayHello(Person person) {
+    public void sayHello(Person person) {
     }
 
     /* (non-Javadoc)
-	 * @see lab.model.Person1#getCountry()
-	 */
+     * @see lab.model.Person1#getCountry()
+     */
     @Override
-	public Country getCountry() {
+    public Country getCountry() {
         return country;
     }
 
     /* (non-Javadoc)
-	 * @see lab.model.Person1#setCountry(lab.model.Country)
-	 */
+     * @see lab.model.Person1#setCountry(lab.model.Country)
+     */
     @Override
-	public void setCountry(Country country) {
+    public void setCountry(Country country) {
         this.country = country;
     }
 
     /* (non-Javadoc)
-	 * @see lab.model.Person1#isProgrammer()
-	 */
+     * @see lab.model.Person1#isProgrammer()
+     */
     @Override
-	public boolean isProgrammer() {
+    public boolean isProgrammer() {
         return isProgrammer;
     }
 
     /* (non-Javadoc)
-	 * @see lab.model.Person1#setProgrammer(boolean)
-	 */
+     * @see lab.model.Person1#setProgrammer(boolean)
+     */
     @Override
-	public void setProgrammer(boolean programmer) {
+    public void setProgrammer(boolean programmer) {
         isProgrammer = programmer;
     }
 
     /* (non-Javadoc)
-	 * @see lab.model.Person1#getContacts()
-	 */
+     * @see lab.model.Person1#getContacts()
+     */
     @Override
-	public List<String> getContacts() {
+    public List<String> getContacts() {
         return contacts;
     }
 
     /* (non-Javadoc)
-	 * @see lab.model.Person1#setContacts(java.util.List)
-	 */
+     * @see lab.model.Person1#setContacts(java.util.List)
+     */
     @Override
-	public void setContacts(List<String> contacts) {
+    public void setContacts(List<String> contacts) {
         this.contacts = contacts;
     }
 
     /* (non-Javadoc)
-	 * @see lab.model.Person1#getId()
-	 */
+     * @see lab.model.Person1#getId()
+     */
     @Override
-	public int getId() {
+    public int getId() {
         return id;
     }
 
     /* (non-Javadoc)
-	 * @see lab.model.Person1#setId(int)
-	 */
+     * @see lab.model.Person1#setId(int)
+     */
     @Override
-	public void setId(int id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -158,10 +161,10 @@ public class UsualPerson implements Person {
     }
 
     /* (non-Javadoc)
-	 * @see lab.model.Person1#hashCode()
-	 */
+     * @see lab.model.Person1#hashCode()
+     */
     @Override
-	public int hashCode() {
+    public int hashCode() {
         int result;
         result = (name != null ? name.hashCode() : 0);
         result = 31 * result + age;
