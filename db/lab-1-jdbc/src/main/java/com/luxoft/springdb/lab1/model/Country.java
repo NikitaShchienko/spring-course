@@ -1,12 +1,17 @@
 package com.luxoft.springdb.lab1.model;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
 import java.io.Serializable;
 
-public class Country implements Serializable{
+@Document
+public class Country implements Serializable {
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	private int id;
+    @Id
+    private int id;
 
     private String name;
 
