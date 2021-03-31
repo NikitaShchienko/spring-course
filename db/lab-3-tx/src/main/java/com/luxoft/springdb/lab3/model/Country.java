@@ -1,12 +1,13 @@
 package com.luxoft.springdb.lab3.model;
 
 import java.io.Serializable;
+import java.util.Objects;
 
-public class Country implements Serializable{
+public class Country implements Serializable {
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	private int id;
+    private int id;
 
     private String name;
 
@@ -54,6 +55,7 @@ public class Country implements Serializable{
         return id + ". " + name + " (" + codeName + ")";
     }
 
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
@@ -66,6 +68,7 @@ public class Country implements Serializable{
         return true;
     }
 
+    @Override
     public int hashCode() {
         int result = 0;
         result = 31 * result + (name != null ? name.hashCode() : 0);

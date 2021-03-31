@@ -16,8 +16,8 @@ public interface ProgrammaticTransactionCountryService {
 
     public Country getCountryByCodeName(String codeName, Propagation propagation);
 
-    public void setDao(CountryDao dao);
+    public void setCountryDao(CountryDao countryDao);
 
-    public CountryDao getDao();
+    public CountryDao getCountryDao();
 
 }
